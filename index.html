@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pick Me Up — 데리러 가는 길, 연락은 픽미업이</title>
+  <meta name="description" content="운전자는 Gleo에게 말 한마디, 기다리는 사람은 문자 속 링크 하나. 차량 위치와 도착 시간, 나왔는지까지 서로 아는 차량용 픽업 앱 픽미업." />
+  <meta name="theme-color" content="#06110D" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
+  <link rel="stylesheet" href="styles.css?v=29" />
+</head>
+<body>
+  <header class="nav" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Pick Me Up 처음으로">
+      <img src="assets/favicon.png" alt="" width="22" height="22" /> Pick Me Up
+    </a>
+    <nav class="nav__links" aria-label="주요 섹션">
+      <a href="#before">왜</a>
+      <a href="#driver">운전자</a>
+      <a href="#rider">기다리는 사람</a>
+      <a href="#promise">약속</a>
+      <a href="#moments">이럴 때</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <!-- 1. HERO: 반복되는 질문 -->
+    <section class="scene" id="hero" data-theme="light" style="--len: 260vh">
+      <div class="scene__sticky hero">
+        <div class="hero__map" aria-hidden="true"></div>
+        <div class="hero__stack">
+          <p class="hero__q" data-step="0">“어디쯤이야?”</p>
+          <p class="hero__q" data-step="1">“지금 나가면 돼?”</p>
+          <p class="hero__q" data-step="2">“어디서 만나?”</p>
+          <div class="hero__brand" data-step="3">
+            <h1 class="hero__mark">Pick<br />Me Up</h1>
+            <p class="hero__sub">음성 한마디로 차량 위치와 도착 시간을 공유하고<br /> 상대의 준비 상태까지 확인하는 차량용 앱</p>
+          </div>
+        </div>
+        <p class="scroll-hint" aria-hidden="true">스크롤</p>
+      </div>
+    </section>
+
+    <!-- 2. BEFORE: 지금의 픽업 (지연의 휴대전화) -->
+    <section class="scene before-sec" id="before" data-theme="light" style="--len: 440vh">
+      <div class="scene__sticky before">
+        <div class="before__copy">
+          <p class="story__eyebrow">지금의 픽업</p>
+          <h2 class="before__title" id="beforeTitle">
+            <span class="is-on">데리러 갈 때마다<br /> 이런 연락, 익숙하죠?</span>
+            <span>이제는<br /> 이 한 통이면 돼요.</span>
+          </h2>
+          <p class="before__calm" id="beforeCalm">물어볼 필요도, 운전 중에 답할 필요도 없어요.<br /> 위치와 남은 시간은 링크 하나로.</p>
+        </div>
+
+        <div class="ip-wrap" id="chatWrap">
+          <div class="iphone" id="chatPhone" data-screen="thread" aria-label="예시 대화">
+            <span class="iphone__key iphone__key--action"></span>
+            <span class="iphone__key iphone__key--volup"></span>
+            <span class="iphone__key iphone__key--voldn"></span>
+            <span class="iphone__key iphone__key--power"></span>
+            <div class="iphone__bezel">
+              <div class="iphone__screen">
+                <div class="ios-bar">
+                  <span class="ios-bar__time" id="chatClock">6:28</span>
+                  <span class="ios-bar__icons">
+                    <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx=".8" /><rect x="5" y="5.5" width="3" height="6.5" rx=".8" /><rect x="10" y="3" width="3" height="9" rx=".8" /><rect x="15" y="0" width="3" height="12" rx=".8" /></svg>
+                    <svg viewBox="0 0 16 12"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0L8 11.5Z" /><path d="M3.2 6.6a6.8 6.8 0 0 1 9.6 0l-1.3 1.3a5 5 0 0 0-7 0L3.2 6.6Z" /><path d="M.8 4.2a10.2 10.2 0 0 1 14.4 0l-1.3 1.3a8.4 8.4 0 0 0-11.8 0L.8 4.2Z" /></svg>
+                    <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke-opacity=".4" /><rect x="2" y="2" width="12" height="8" rx="1.8" /><path d="M25 4v4c.8-.3 1.3-1.1 1.3-2S25.8 4.3 25 4Z" fill-opacity=".4" /></svg>
+                  </span>
+                </div>
+                <div class="iphone__island"></div>
+
+                <!-- the noisy thread -->
+                <div class="scr scr--thread">
+                  <div class="msg-head">
+                    <span class="msg-head__back">‹</span>
+                    <div class="msg-head__who">
+                      <span class="msg-head__avatar">민수</span>
+                      <span>민수 ›</span>
+                    </div>
+                  </div>
+                  <div class="thread" id="thread">
+                    <p class="thread__stamp">오늘 오후 6:28</p>
+                    <p class="tb tb--out" data-k="q">어디쯤이야?</p>
+                    <p class="tb tb--in" data-k="drive">지금 출발! 15분?<small>🚗 운전 중 답장</small></p>
+                    <p class="tb tb--out" data-k="q">나 벌써 나와 있어 비 와ㅠ</p>
+                    <p class="tb tb--in" data-k="drive">막혀서 10분 더 걸릴 듯…<small>🚗 운전 중 답장</small></p>
+                    <p class="tb tb--out" data-k="q">정문이야 후문이야?</p>
+                    <div class="tb tb--call" data-k="call"><span class="call__ico"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z" /></svg></span><span class="call__txt"><b>음성 통화</b><em>응답 없음</em></span></div>
+                    <p class="tb-typing" id="typing"><i></i><i></i><i></i></p>
+                  </div>
+                  <div class="msg-input"><span class="msg-input__plus">+</span><span class="msg-input__field">iMessage</span></div>
+                </div>
+
+                <!-- outgoing call -->
+                <div class="scr scr--call" id="callScr">
+                  <div class="call__who">
+                    <span class="call__avatar">민수</span>
+                    <p class="call__name">민수</p>
+                    <p class="call__status"><span id="callText">호출 중</span><span class="call__dots"><i>.</i><i>.</i><i>.</i></span></p>
+                  </div>
+                  <div class="call__grid">
+                    <span><i><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v5a3 3 0 0 0 4.6 2.5L9.2 9.1V6a2.8 2.8 0 0 1 5.6 0v5.2l1.4 1.4c.1-.4.2-.9.2-1.4V6a4.4 4.4 0 0 0-4.4-3Z" fill="#fff" stroke="none" /><path d="M6 11a6 6 0 0 0 9.3 5M18 11c0 .9-.2 1.7-.5 2.5M12 17v3.5M9 20.5h6" /><path d="M4 4l16 16" /></svg></i>소리 끔</span>
+                    <span><i><svg viewBox="0 0 24 24" class="fill"><circle cx="6" cy="5" r="1.9" /><circle cx="12" cy="5" r="1.9" /><circle cx="18" cy="5" r="1.9" /><circle cx="6" cy="11" r="1.9" /><circle cx="12" cy="11" r="1.9" /><circle cx="18" cy="11" r="1.9" /><circle cx="6" cy="17" r="1.9" /><circle cx="12" cy="17" r="1.9" /><circle cx="18" cy="17" r="1.9" /><circle cx="12" cy="22.2" r="1.6" /></svg></i>키패드</span>
+                    <span><i><svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="#fff" stroke="none" /><path d="M15.5 9a4.2 4.2 0 0 1 0 6M18 6.5a7.8 7.8 0 0 1 0 11" /></svg></i>스피커</span>
+                    <span><i><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg></i>통화 추가</span>
+                    <span><i><svg viewBox="0 0 24 24"><rect x="2.5" y="6.5" width="13" height="11" rx="2.5" fill="#fff" stroke="none" /><path d="M16.5 10.5 21.5 7.5v9l-5-3z" fill="#fff" stroke="none" /></svg></i>FaceTime</span>
+                    <span><i><svg viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8" fill="#fff" stroke="none" /><path d="M4.5 20c.8-4 3.8-6 7.5-6s6.7 2 7.5 6z" fill="#fff" stroke="none" /></svg></i>연락처</span>
+                  </div>
+                  <span class="call__end"><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2Z" /></svg></span>
+                </div>
+
+                <!-- the calm alternative -->
+                <div class="scr scr--lock">
+                  <p class="lock__date">11월 7일 금요일</p>
+                  <p class="lock__time">6:28</p>
+                  <div class="lock__notif" id="beforeNotif">
+                    <span class="app-ico"><svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.3 3 11.4c0 2.3 1.3 4.4 3.3 5.8-.2 1.2-.9 2.4-1.9 3.2 1.9 0 3.6-.7 4.7-1.8.9.2 1.9.4 2.9.4 5 0 9-3.3 9-7.4S17 4 12 4Z" /></svg></span>
+                    <div class="lock__notif-text">
+                      <p class="lock__notif-top"><b>픽미업</b><span>지금</span></p>
+                      <p>[픽미업] 민수 님이 데리러 오고 있어요. 약 12분 뒤 회사 정문 도착 예정이에요. pmu.link/x8Kq</p>
+                    </div>
+                  </div>
+                  <div class="lock__actions"><span>◐</span><span>◉</span></div>
+                </div>
+
+                <span class="iphone__home"></span>
+              </div>
+            </div>
+          </div>
+          <p class="before__note">예시 대화</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. DRIVER: Gleo + 차량 화면 -->
+    <section class="scene scene--dark" id="driver" data-theme="dark" style="--len: 620vh">
+      <div class="scene__sticky drv">
+        <div class="story drv__copy">
+          <p class="story__eyebrow">운전자 시점 · IONIQ 5</p>
+          <p class="story__step"><b data-num>01</b> / 05</p>
+          <div class="story__beats">
+            <div class="beat is-on"><h2>Gleo에게<br /> 말하면 시작</h2><p>핸들에서 손을 떼지 않고, 평소처럼 말하세요.</p></div>
+            <div class="beat"><h2>공유는<br /> 픽미업이 알아서</h2><p>내비 목적지와 도착 시간으로 링크를 만들어 문자로 보내요.</p></div>
+            <div class="beat"><h2>운전에만<br /> 집중하세요</h2><p>남은 시간은 계속 갱신되고, 5분 전 알림도 자동으로.</p></div>
+            <div class="beat"><h2>나왔는지는<br /> 화면에 바로</h2><p>궁금하면 물어보세요. “지연이 나왔어?”</p></div>
+            <div class="beat"><h2>만나면<br /> 말 한마디로 끝</h2><p>링크는 만료되고 위치 전송도 멈춰요.</p></div>
+          </div>
+        </div>
+
+        <div class="cd-wrap" id="cdWrap">
+          <div class="cd" id="cd" aria-hidden="true">
+            <div class="cd__glass">
+              <div class="cd__status">
+                <span>18:42</span>
+                <span class="cd__status-r">
+                  <svg viewBox="0 0 20 14"><rect x="0" y="9" width="3" height="5" rx="1" /><rect x="5" y="6" width="3" height="8" rx="1" /><rect x="10" y="3" width="3" height="11" rx="1" /><rect x="15" y="0" width="3" height="14" rx="1" /></svg>
+                  LTE · 21°
+                </span>
+              </div>
+
+              <div class="cd__body">
+                <!-- navigation -->
+                <div class="cd__nav">
+                  <svg class="cd__map" id="cdMap" viewBox="80 430 700 400" preserveAspectRatio="xMidYMid slice">
+                    <image href="assets/map-dark.svg" x="0" y="0" width="1600" height="917" />
+                    <path class="cd__route-dim" id="cdTrace" d="M88.7 798.0L342.8 687.7L347.7 685.0L350.8 681.1L363.0 683.7L374.1 679.0L401.4 661.9L421.6 640.3L440.4 622.4L446.0 619.0L508.8 567.9L522.1 565.2L543.0 553.7L626.7 487.2L635.2 486.6L638.9 488.6L700.8 565.8L707.7 560.3" />
+                    <path class="cd__route" id="cdRoute" d="M88.7 798.0L342.8 687.7L347.7 685.0L350.8 681.1L363.0 683.7L374.1 679.0L401.4 661.9L421.6 640.3L440.4 622.4L446.0 619.0L508.8 567.9L522.1 565.2L543.0 553.7L626.7 487.2L635.2 486.6L638.9 488.6L700.8 565.8L707.7 560.3" />
+                    <circle class="cd__pin" cx="707.7" cy="560.3" r="9" />
+                    <circle class="cd__pin-core" cx="707.7" cy="560.3" r="3.5" />
+                    <g id="cdCar"><circle class="cd__car-halo" r="18" /><path class="cd__car" d="M0 -11 L8 9 L0 4 L-8 9 Z" /></g>
+                  </svg>
+                  <div class="cd__guide">
+                    <span class="cd__turn">↱</span>
+                    <span id="cdGuide"><b>300m</b> 우회전 · 여의대로</span>
+                  </div>
+                  <div class="cd__dest">
+                    <span>회사 정문</span>
+                    <b id="cdArrive">18:54 도착</b>
+                  </div>
+                </div>
+
+                <!-- Pick Me Up vehicle app -->
+                <div class="cd__app" id="cdApp" data-state="idle">
+                  <p class="pmu__brand"><img src="assets/favicon.png" alt="" width="20" height="20" />Pick Me Up</p>
+
+                  <div class="pmu pmu--idle">
+                    <p class="pmu__hint">말로 시작해 보세요</p>
+                    <p class="pmu__example">“지연이에게 도착 예정이라고 알려줘”</p>
+                    <ul class="pmu__contacts"><li><i>지</i>지연</li><li><i>엄</i>엄마</li><li><i>서</i>서연</li></ul>
+                  </div>
+
+                  <div class="pmu pmu--share">
+                    <div class="pmu__who"><i>지</i><div><b>지연 님에게 공유 중</b><span>문자로 링크를 보냈어요</span></div></div>
+                    <p class="pmu__eta"><b id="cdEta">12</b><span>분 뒤 도착</span></p>
+                    <p class="pmu__place">회사 정문</p>
+                    <div class="pmu__state" id="cdState"><span class="pmu__dot"></span><span id="cdStateText">확인 대기</span></div>
+                    <div class="pmu__stop">공유 종료</div>
+                  </div>
+
+                  <div class="pmu pmu--ended">
+                    <p class="pmu__check">✓</p>
+                    <b>공유를 종료했어요</b>
+                    <span>링크가 만료되고 위치 전송을 멈췄어요</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="cd__dock">
+                <span class="cd__dock-i">⌂</span><span class="cd__dock-i is-on">➤</span><span class="cd__dock-i">♪</span><span class="cd__dock-i">✆</span><span class="cd__dock-i">▦</span>
+                <span class="cd__dock-temp">22.0°</span>
+              </div>
+
+              <div class="cd__toast" id="cdToast">지연 님에게 ‘곧 도착’ 알림을 보냈어요</div>
+
+              <!-- Gleo voice layer -->
+              <div class="gleo" id="gleo">
+                <div class="gleo__orb"><i></i><i></i><i></i></div>
+                <div class="gleo__lines">
+                  <p class="gleo__user" id="gleoUser"></p>
+                  <p class="gleo__reply" id="gleoReply"></p>
+                </div>
+                <span class="gleo__name">Gleo</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. RIDER: 문자 → 링크 → 차량 위치 -->
+    <section class="scene" id="rider" data-theme="light" style="--len: 640vh">
+      <div class="scene__sticky rid">
+        <div class="story rid__copy">
+          <p class="story__eyebrow">기다리는 사람 시점</p>
+          <p class="story__step"><b data-num>01</b> / 06</p>
+          <div class="story__beats">
+            <div class="beat is-on"><h2>문자가<br /> 도착해요</h2><p>앱 설치 없이, 평소 쓰던 문자로.</p></div>
+            <div class="beat"><h2>링크를<br /> 누르면</h2><p>픽미업 주소 하나면 충분해요.</p></div>
+            <div class="beat"><h2>차가 어디쯤인지<br /> 보여요</h2><p>실시간 위치와 남은 시간, 만날 장소까지.</p></div>
+            <div class="beat"><h2>나갈 때를<br /> 알려줘요</h2><p>도착 5분 전, 딱 한 번.</p></div>
+            <div class="beat"><h2>‘나왔어요’<br /> 한 번이면</h2><p>운전자의 차량 화면에 바로 떠요.</p></div>
+            <div class="beat"><h2>만나면 끝</h2><p>링크는 만료되고, 위치도 지워져요.</p></div>
+          </div>
+        </div>
+
+        <div class="ip-wrap" id="ipWrap">
+          <div class="iphone" id="iphone" data-screen="lock" aria-hidden="true">
+            <span class="iphone__key iphone__key--action"></span>
+            <span class="iphone__key iphone__key--volup"></span>
+            <span class="iphone__key iphone__key--voldn"></span>
+            <span class="iphone__key iphone__key--power"></span>
+            <div class="iphone__bezel">
+              <div class="iphone__screen">
+                <!-- status bar -->
+                <div class="ios-bar">
+                  <span class="ios-bar__time">6:42</span>
+                  <span class="ios-bar__icons">
+                    <svg viewBox="0 0 18 12"><rect x="0" y="8" width="3" height="4" rx=".8" /><rect x="5" y="5.5" width="3" height="6.5" rx=".8" /><rect x="10" y="3" width="3" height="9" rx=".8" /><rect x="15" y="0" width="3" height="12" rx=".8" /></svg>
+                    <svg viewBox="0 0 16 12"><path d="M8 11.5 5.6 9a3.4 3.4 0 0 1 4.8 0L8 11.5Z" /><path d="M3.2 6.6a6.8 6.8 0 0 1 9.6 0l-1.3 1.3a5 5 0 0 0-7 0L3.2 6.6Z" /><path d="M.8 4.2a10.2 10.2 0 0 1 14.4 0l-1.3 1.3a8.4 8.4 0 0 0-11.8 0L.8 4.2Z" /></svg>
+                    <svg viewBox="0 0 27 12"><rect x=".5" y=".5" width="23" height="11" rx="3.2" fill="none" stroke-opacity=".4" /><rect x="2" y="2" width="16" height="8" rx="1.8" /><path d="M25 4v4c.8-.3 1.3-1.1 1.3-2S25.8 4.3 25 4Z" fill-opacity=".4" /></svg>
+                  </span>
+                </div>
+                <div class="iphone__island"></div>
+
+                <!-- lock screen -->
+                <div class="scr scr--lock">
+                  <p class="lock__date">11월 7일 금요일</p>
+                  <p class="lock__time">6:42</p>
+                  <div class="lock__notif" id="lockNotif">
+                    <span class="app-ico"><svg viewBox="0 0 24 24"><path d="M12 4C7 4 3 7.3 3 11.4c0 2.3 1.3 4.4 3.3 5.8-.2 1.2-.9 2.4-1.9 3.2 1.9 0 3.6-.7 4.7-1.8.9.2 1.9.4 2.9.4 5 0 9-3.3 9-7.4S17 4 12 4Z" /></svg></span>
+                    <div class="lock__notif-text">
+                      <p class="lock__notif-top"><b>픽미업</b><span>지금</span></p>
+                      <p>[픽미업] 민수 님이 데리러 오고 있어요. 약 12분 뒤 회사 정문 도착 예정이에요.</p>
+                    </div>
+                  </div>
+                  <div class="lock__actions"><span>◐</span><span>◉</span></div>
+                </div>
+
+                <!-- messages -->
+                <div class="scr scr--msg">
+                  <div class="msg-head">
+                    <span class="msg-head__back">‹</span>
+                    <div class="msg-head__who">
+                      <img src="assets/icon-512.png" alt="" width="44" height="44" />
+                      <span>픽미업 ›</span>
+                    </div>
+                  </div>
+                  <div class="msg-body">
+                    <p class="msg-body__stamp"><b>문자 메시지</b><br />오늘 오후 6:42</p>
+                    <div class="sms">[픽미업] 민수 님이 데리러 오고 있어요. 약 12분 뒤 회사 정문 도착 예정이에요.<br /><span class="sms__link" id="smsLink">https://pmu.link/x8Kq</span></div>
+                    <div class="sms-card">
+                      <svg class="sms-card__map" viewBox="520 440 300 160" preserveAspectRatio="xMidYMid slice">
+                        <image href="assets/map-light.svg" x="0" y="0" width="1600" height="917" />
+                        <circle cx="707.7" cy="560.3" r="9" fill="#fff" stroke="#0b0f0d" stroke-width="4" />
+                      </svg>
+                      <div class="sms-card__meta"><b>민수 님의 차량 위치 · 픽미업</b><span>pmu.link</span></div>
+                    </div>
+                  </div>
+                  <div class="msg-input"><span class="msg-input__plus">+</span><span class="msg-input__field">문자 메시지</span></div>
+                </div>
+
+                <!-- browser: pick me up web -->
+                <div class="scr scr--web">
+                  <div class="web-load" id="webLoad"></div>
+                  <div class="web" id="webPage">
+                    <p class="web__brand"><img src="assets/favicon.png" alt="" width="18" height="18" />Pick Me Up</p>
+                    <div class="web__live">
+                      <p class="web__from">민수 님이 데리러 오는 중</p>
+                      <p class="web__eta"><span id="webEta">약 12분</span> 뒤</p>
+                      <p class="web__place">회사 정문 <span>· 18:54 도착 예정</span></p>
+                      <div class="web__map">
+                        <svg viewBox="60 460 680 370" preserveAspectRatio="xMidYMid meet">
+                          <image href="assets/map-light.svg" x="0" y="0" width="1600" height="917" />
+                          <path class="web__route" id="webRoute" d="M88.7 798.0L342.8 687.7L347.7 685.0L350.8 681.1L363.0 683.7L374.1 679.0L401.4 661.9L421.6 640.3L440.4 622.4L446.0 619.0L508.8 567.9L522.1 565.2L543.0 553.7L626.7 487.2L635.2 486.6L638.9 488.6L700.8 565.8L707.7 560.3" />
+                          <circle class="web__pin" cx="707.7" cy="560.3" r="10" />
+                          <g id="webCar"><circle class="web__car-halo" r="22" /><circle class="web__car" r="10" /></g>
+                        </svg>
+                        <span class="web__updated">● 방금 갱신</span>
+                      </div>
+                      <div class="web__btns">
+                        <span class="web__btn">준비 중</span>
+                        <span class="web__btn web__btn--main" id="webReady">나왔어요</span>
+                      </div>
+                    </div>
+                    <div class="web__ended">
+                      <p class="web__ended-mark">✓</p>
+                      <b>공유가 종료됐어요</b>
+                      <span>만나서 반가워요.<br />이 링크는 더 이상 열리지 않아요.</span>
+                    </div>
+                  </div>
+                  <div class="safari">
+                    <div class="safari__bar"><span class="safari__aa">가가</span><span class="safari__url">🔒 pmu.link</span><span class="safari__reload">↻</span></div>
+                    <div class="safari__tools"><span>‹</span><span>›</span><span>⇪</span><span>⧉</span><span>▢</span></div>
+                  </div>
+                </div>
+
+                <!-- banner notification -->
+                <div class="ios-banner" id="iosBanner">
+                  <span class="app-ico app-ico--pmu"><img src="assets/favicon.png" alt="" width="34" height="34" /></span>
+                  <div><p class="lock__notif-top"><b>픽미업</b><span>지금</span></p><p>곧 도착해요 · 약 5분 남았어요. 지금 나가면 딱 맞아요!</p></div>
+                </div>
+
+                <span class="tap" id="tap"></span>
+                <span class="iphone__home"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. PROMISE -->
+    <section class="block block--dark" id="promise" data-theme="dark">
+      <div class="wrap">
+        <p class="eyebrow eyebrow--lime">세 가지 약속</p>
+        <h2 class="title">복잡한 건 픽미업이,<br />두 사람은 만나기만.</h2>
+        <div class="promises">
+          <article class="promise">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="32" r="22" /><path d="M14 32h12M38 32h12M32 38v12" /><circle cx="32" cy="32" r="6" /></svg>
+            <h3>손은 핸들에</h3>
+            <p>시작도, 확인도, 종료도 음성으로. 운전 중 휴대전화를 집을 일이 없어요.</p>
+          </article>
+          <article class="promise">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="20" y="8" width="24" height="48" rx="5" /><path d="M27 46h10" /><path d="M14 22c-4 6-4 14 0 20M50 22c4 6 4 14 0 20" /></svg>
+            <h3>설치 없이</h3>
+            <p>기다리는 사람은 문자 속 링크만 열면 돼요. 가입도, 앱도 필요 없어요.</p>
+          </article>
+          <article class="promise">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><circle cx="32" cy="34" r="20" /><path d="M32 22v12l8 6" /><path d="M26 8h12" /></svg>
+            <h3>필요한 만큼만</h3>
+            <p>만나면 자동으로 끝나요. 이동 경로는 저장하지 않고, 마지막 위치도 지워요.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. MOMENTS -->
+    <section class="block block--light" id="moments" data-theme="light">
+      <div class="wrap">
+        <p class="eyebrow">이럴 때 픽미업</p>
+        <h2 class="title">매일의 픽업이<br />조금 더 가벼워져요.</h2>
+      </div>
+      <div class="moments">
+        <article class="moment">
+          <p class="moment__tag"><span class="moment__ico"><svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 0 1 18 0Z" /><path d="M12 12v7a2 2 0 0 1-4 0" /></svg></span>비 오는 퇴근길</p>
+          <h3 class="moment__head">도착 5분 전에 알려줘요</h3>
+          <p class="moment__sub">비 맞으며 기다리지 말고, 그때 나가면 돼요.</p>
+          <div class="moment__visual">
+            <p class="moment__bubble">얼마나 남았어? 비 와ㅠ</p>
+            <span class="moment__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" /></svg></span>
+            <div class="ui ui--banner">
+              <img src="assets/favicon.png" alt="" width="36" height="36" />
+              <div><p class="ui__top"><b>픽미업</b><span>지금</span></p><p>곧 도착해요 · 약 5분 남았어요</p></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="moment">
+          <p class="moment__tag"><span class="moment__ico"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="14" rx="3" /><path d="M5 11h14M8 17l-2 4M16 17l2 4" /></svg></span>역 앞, 출구가 여러 개</p>
+          <h3 class="moment__head">두 사람이 같은 핀을 봐요</h3>
+          <p class="moment__sub">“몇 번 출구?” 헤맬 필요가 없어요.</p>
+          <div class="moment__visual">
+            <p class="moment__bubble">1번 출구라니까? 어디야?</p>
+            <span class="moment__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" /></svg></span>
+            <div class="ui ui--pin">
+              <svg viewBox="610 500 200 110" preserveAspectRatio="xMidYMid slice"><image href="assets/map-light.svg" x="0" y="0" width="1600" height="917" /><circle cx="707.7" cy="560.3" r="16" fill="#c8ff00" opacity=".35" /><circle cx="707.7" cy="560.3" r="7" fill="#fff" stroke="#0b0f0d" stroke-width="3.5" /></svg>
+              <span class="ui-pin__label">만날 곳 · 3번 출구 앞</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="moment">
+          <p class="moment__tag"><span class="moment__ico"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3" /><path d="M12 8v8M8 12h8" /></svg></span>병원 앞 부모님</p>
+          <h3 class="moment__head">문자 하나면 충분해요</h3>
+          <p class="moment__sub">앱 설치도, 가입도 없이 큰 글씨로.</p>
+          <div class="moment__visual">
+            <p class="moment__bubble">앱 깔아야 해? 엄마는 어려워</p>
+            <span class="moment__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" /></svg></span>
+            <div class="ui ui--sms">
+              <small>민수 님이 데리러 오는 중</small>
+              <b>약 12분 뒤</b>
+              <span>병원 정문</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="moment">
+          <p class="moment__tag"><span class="moment__ico"><svg viewBox="0 0 24 24"><rect x="5" y="3" width="10" height="18" rx="1.5" /><path d="M15 9h4v12h-4M8 7h1M11 7h1M8 11h1M11 11h1M8 15h1M11 15h1" /></svg></span>아파트 입구</p>
+          <h3 class="moment__head">‘나왔어요’가 차에 떠요</h3>
+          <p class="moment__sub">기다릴지, 한 바퀴 돌지 고민 끝.</p>
+          <div class="moment__visual">
+            <p class="moment__bubble">나오고 있어? 한 바퀴 돌까?</p>
+            <span class="moment__arrow" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6" /></svg></span>
+            <div class="ui ui--car">
+              <span class="ui-car__brand"><img src="assets/favicon.png" alt="" width="18" height="18" />Pick Me Up</span>
+              <span class="ui-car__state"><i></i>지연 님이 나왔어요</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="wrap note">기획 단계의 가상 사례입니다.</p>
+    </section>
+
+    <!-- 7. OUTRO -->
+    <section class="outro" data-theme="dark">
+      <img src="assets/icon-512.png" alt="Pick Me Up 앱 아이콘" width="140" height="140" />
+      <p class="outro__line">“어디쯤이야?” 대신<br /><span>“나왔어요.”</span></p>
+    </section>
+  </main>
+
+  <footer class="footer" data-theme="dark">
+    <p>Pick Me Up · Pleos Connect 기반 차량용 앱 공모전 출품 기획안 · 2026</p>
+    <p class="footer__fine">본 페이지의 차량 화면, Gleo 대화, 휴대전화 화면은 목표 경험을 설명하는 예시입니다. 음성비서·내비게이션 연동은 실제 환경에서 검증할 예정이며, 개선 효과는 사용자 테스트 후 제시합니다.</p>
+    <p class="footer__fine">지도 데이터 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 기여자</p>
+  </footer>
+
+  <script src="script.js?v=30"></script>
+</body>
+</html>
