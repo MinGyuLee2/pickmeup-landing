@@ -196,24 +196,12 @@
     iphone.classList.toggle('is-ended', p >= 0.88);
   };
 
-  /* ---------- Nav theme ---------- */
-  const nav = $('nav');
-  const themed = [...document.querySelectorAll('[data-theme]')];
-  const updateNav = () => {
-    const y = nav.getBoundingClientRect().bottom;
-    const hit = themed.find((el) => {
-      const r = el.getBoundingClientRect();
-      return r.top <= y && r.bottom > y;
-    });
-    nav.classList.toggle('is-dark', hit?.dataset.theme === 'dark');
-  };
-
   let ticking = false;
   const onScroll = () => {
     if (ticking) return;
     ticking = true;
     requestAnimationFrame(() => {
-      updateHero(); updateBefore(); updateDriver(); updateRider(); updateNav();
+      updateHero(); updateBefore(); updateDriver(); updateRider();
       ticking = false;
     });
   };
