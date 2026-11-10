@@ -471,6 +471,11 @@ img { display: block; }
 .outro__line { font-size: clamp(32px, 5.6vw, 72px); font-weight: 800; line-height: 1.2; letter-spacing: -0.05em; }
 .outro__line span { color: var(--lime); }
 .tech { border-top: 1px solid var(--line-dark); background: radial-gradient(900px 480px at 50% 0%, rgba(200, 255, 0, .06), transparent 70%), var(--night); }
+.tech-lockup { display: flex; align-items: center; gap: 16px; }
+.tech-lockup img { display: block; height: 24px; width: auto; }
+.tech-lockup span { font-size: 18px; color: var(--fog-2); }
+.tech-lockup b { font-size: 24px; font-weight: 800; letter-spacing: -0.04em; color: var(--lime); }
+.tech-eyebrow { margin-top: 28px; }
 .tech-card { padding: 14px 14px 34px; overflow: hidden; }
 .tech-card > h3, .tech-card > p { padding: 0 14px; }
 .tech-card > h3 { margin-top: 14px; }
