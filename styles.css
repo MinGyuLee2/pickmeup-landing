@@ -470,6 +470,12 @@ img { display: block; }
 .outro img { width: 140px; height: 140px; border-radius: 32px; }
 .outro__line { font-size: clamp(32px, 5.6vw, 72px); font-weight: 800; line-height: 1.2; letter-spacing: -0.05em; }
 .outro__line span { color: var(--lime); }
+.video-link { display: inline-flex; align-items: center; gap: 10px; padding: 16px 28px; border-radius: 999px; background: var(--lime); color: var(--night); font-size: 17px; font-weight: 700; letter-spacing: -0.02em; text-decoration: none; transition: transform .2s var(--ease), box-shadow .2s var(--ease); }
+.video-link:hover { transform: translateY(-2px); box-shadow: 0 12px 30px -10px rgba(200, 255, 0, .6); }
+.video-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+.video-link span { font-size: 13px; }
+.video-link--ghost { margin-top: 26px; padding: 12px 22px; background: transparent; color: var(--lime); border: 1.5px solid rgba(200, 255, 0, .55); font-size: 15px; pointer-events: auto; }
+.video-link--ghost:hover { background: rgba(200, 255, 0, .1); box-shadow: none; }
 .footer { background: var(--night); color: #5c6b64; border-top: 1px solid var(--line-dark); padding: 32px var(--gutter) 40px; font-size: 13px; line-height: 1.7; }
 .footer__fine { margin-top: 6px; max-width: 760px; font-size: 12px; }
 .footer a { text-decoration: underline; text-underline-offset: 2px; }
