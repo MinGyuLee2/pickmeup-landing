@@ -89,14 +89,17 @@
   const cdCar = $('cdCar'), cdApp = $('cdApp'), cdEta = $('cdEta'), cdGuide = $('cdGuide');
   const cdState = $('cdState'), cdStateText = $('cdStateText'), cdToast = $('cdToast');
   const gleo = $('gleo'), gleoUser = $('gleoUser'), gleoReply = $('gleoReply');
-  const D_BEATS = [0, 0.18, 0.36, 0.62, 0.82];
-  const D_DRIVE = [0.22, 0.8];
+  const D_BEATS = [0, 0.15, 0.31, 0.47, 0.65, 0.83];
+  const D_DRIVE = [0.18, 0.6];
+  const D_PIN = 0.29; // recipient confirms the waiting spot (= destination)
+  const D_NEAR = D_DRIVE[0] + (D_DRIVE[1] - D_DRIVE[0]) * 0.75; // ~3 min left: share panel → roadview
+  const cdWait = $('cdWait'), cdRv = $('cdRv'), cdRvEta = $('cdRvEta'), cdRvState = $('cdRvState');
   const ALERT = 7 / 12; // 5 of 12 minutes left
   const D_ALERT = D_DRIVE[0] + (D_DRIVE[1] - D_DRIVE[0]) * ALERT;
   const GLEO = [
-    { from: 0.02, to: 0.32, user: '지연이에게 도착 예정이라고 알려줘', reply: '지연 님에게 도착 예정 문자를 보냈어요.', replyAt: 0.19 },
-    { from: 0.65, to: 0.8, user: '지연이 나왔어?', reply: '네, 지연 님이 방금 나왔어요.', replyAt: 0.72 },
-    { from: 0.83, to: 0.98, user: '픽업 끝났어, 공유 종료해', reply: '공유를 종료했어요. 좋은 하루 보내세요!', replyAt: 0.9 },
+    { from: 0.02, to: 0.28, user: '지연이에게 도착 예정이라고 알려줘', reply: '지연 님에게 도착 예정 문자를 보냈어요.', replyAt: 0.16 },
+    { from: 0.67, to: 0.81, user: '지연이 나왔어?', reply: '네, 지연 님이 방금 나왔어요.', replyAt: 0.73 },
+    { from: 0.84, to: 0.98, user: '픽업 끝났어, 공유 종료해', reply: '공유를 종료했어요. 좋은 하루 보내세요!', replyAt: 0.9 },
   ];
 
   const updateDriver = () => {
@@ -106,7 +109,7 @@
 
     // route + car
     const t = span(p, D_DRIVE[0], D_DRIVE[1]);
-    const drawn = span(p, 0.18, 0.24);
+    const drawn = span(p, 0.15, 0.2);
     if (p < D_DRIVE[0]) {
       cdRoute.style.strokeDasharray = `${drawn * CL} ${CL}`;
       cdTrace.style.opacity = 0;
@@ -125,15 +128,24 @@
     cdCar.setAttribute('transform', `translate(${a.x.toFixed(1)} ${a.y.toFixed(1)}) rotate(${ang.toFixed(0)})`);
 
     // vehicle app
-    cdApp.dataset.state = p < 0.19 ? 'idle' : p < 0.9 ? 'share' : 'ended';
+    cdApp.dataset.state = p < 0.16 ? 'idle' : p < 0.9 ? 'share' : 'ended';
     const mins = Math.max(1, Math.ceil(12 * (1 - t) - 1e-6));
     setText(cdEta, t >= 1 ? '0' : String(mins));
     let s = 'wait', st = '링크 확인 대기';
     if (p >= D_ALERT) { s = 'alerted'; st = '‘곧 도착’ 알림 보냄'; }
-    if (beat >= 3) { s = 'out'; st = '지연 님이 나왔어요'; }
+    if (p >= D_PIN && p < D_ALERT) st = '기다릴 위치 · 회사 정문 앞';
+    if (beat >= 4) { s = 'out'; st = '지연 님이 나왔어요'; }
     cdState.dataset.s = s;
     setText(cdStateText, st);
-    cdToast.classList.toggle('is-on', p >= D_ALERT && p < D_ALERT + 0.05);
+
+    // waiting spot pinned at the destination; near arrival the share panel becomes its roadview
+    cdWait.classList.toggle('is-on', p >= D_PIN && !over);
+    cdRv.classList.toggle('is-on', p >= D_NEAR && !over);
+    setText(cdRvEta, t >= 1 ? '0' : String(mins));
+    setText(cdRvState, beat >= 4 ? '지연 님이 나왔어요' : '기다릴 위치 · 회사 정문 앞');
+    const pinToast = p >= D_PIN && p < D_PIN + 0.04, alertToast = p >= D_ALERT && p < D_ALERT + 0.04;
+    setText(cdToast, pinToast ? '지연 님이 기다릴 위치를 보냈어요' : '지연 님에게 ‘곧 도착’ 알림을 보냈어요');
+    cdToast.classList.toggle('is-on', pinToast || alertToast);
 
     // Gleo
     const g = GLEO.find((x) => p >= x.from && p < x.to);

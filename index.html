@@ -8,7 +8,7 @@
   <meta name="theme-color" content="#06110D" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css" />
-  <link rel="stylesheet" href="styles.css?v=31" />
+  <link rel="stylesheet" href="styles.css?v=36" />
 </head>
 <body>
 
@@ -124,15 +124,16 @@
     </section>
 
     <!-- 3. DRIVER: Gleo + 차량 화면 -->
-    <section class="scene scene--dark" id="driver" data-theme="dark" style="--len: 620vh">
+    <section class="scene scene--dark" id="driver" data-theme="dark" style="--len: 740vh">
       <div class="scene__sticky drv">
         <div class="story drv__copy">
           <p class="story__eyebrow">운전자 시점 · IONIQ 5</p>
-          <p class="story__step"><b data-num>01</b> / 05</p>
+          <p class="story__step"><b data-num>01</b> / 06</p>
           <div class="story__beats">
             <div class="beat is-on"><h2>Gleo에게<br /> 말하면 시작</h2><p>핸들에서 손을 떼지 않고, 평소처럼 말하세요.</p></div>
             <div class="beat"><h2>공유는<br /> 픽미업이 알아서</h2><p>내비 목적지와 도착 시간으로 링크를 만들어 문자로 보내요.</p></div>
             <div class="beat"><h2>운전에만<br /> 집중하세요</h2><p>남은 시간은 계속 갱신되고, 5분 전 알림도 자동으로.</p></div>
+            <div class="beat"><h2>다 와 가면<br /> 로드뷰로</h2><p>목적지에 거의 다 오면, 지연 님이 기다리는 곳이 로드뷰로 바뀌어 보여요.</p></div>
             <div class="beat"><h2>나왔는지는<br /> 화면에 바로</h2><p>궁금하면 물어보세요. “지연이 나왔어?”</p></div>
             <div class="beat"><h2>만나면<br /> 말 한마디로 끝</h2><p>링크는 만료되고 위치 전송도 멈춰요.</p></div>
           </div>
@@ -158,6 +159,11 @@
                     <path class="cd__route" id="cdRoute" d="M88.7 798.0L342.8 687.7L347.7 685.0L350.8 681.1L363.0 683.7L374.1 679.0L401.4 661.9L421.6 640.3L440.4 622.4L446.0 619.0L508.8 567.9L522.1 565.2L543.0 553.7L626.7 487.2L635.2 486.6L638.9 488.6L700.8 565.8L707.7 560.3" />
                     <circle class="cd__pin" cx="707.7" cy="560.3" r="9" />
                     <circle class="cd__pin-core" cx="707.7" cy="560.3" r="3.5" />
+                    <g id="cdWait" class="cd__wait" transform="translate(707.7 560.3)">
+                      <circle r="18" class="cd__wait-halo" />
+                      <path class="cd__wait-pin" d="M0 0 C-9 -11 -11 -16 -11 -21 A11 11 0 0 1 11 -21 C11 -16 9 -11 0 0 Z" /><circle cy="-21" r="4.2" fill="#06110d" />
+                      <rect x="-42" y="-58" width="84" height="24" rx="12" class="cd__wait-tag" /><text y="-41.5" text-anchor="middle" class="cd__wait-text">기다릴 위치</text>
+                    </g>
                     <g id="cdCar"><circle class="cd__car-halo" r="18" /><path class="cd__car" d="M0 -11 L8 9 L0 4 L-8 9 Z" /></g>
                   </svg>
                   <div class="cd__guide">
@@ -186,6 +192,49 @@
                     <p class="pmu__place">회사 정문</p>
                     <div class="pmu__state" id="cdState"><span class="pmu__dot"></span><span id="cdStateText">확인 대기</span></div>
                     <div class="pmu__stop">공유 종료</div>
+                  </div>
+
+                  <!-- near arrival the share panel turns into the roadview of the waiting spot -->
+                  <div class="cd__rv" id="cdRv">
+                    <svg viewBox="0 0 320 360" preserveAspectRatio="xMidYMax slice">
+                      <defs>
+                        <linearGradient id="rvSky" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#b6d8f2" /><stop offset="1" stop-color="#eef6fb" /></linearGradient>
+                        <linearGradient id="rvGlass" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#86b0cc" /><stop offset=".5" stop-color="#41708f" /><stop offset="1" stop-color="#2a4d66" /></linearGradient>
+                        <linearGradient id="rvGlass2" x1="1" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#94c4cc" /><stop offset=".6" stop-color="#3f7c86" /><stop offset="1" stop-color="#2b5a63" /></linearGradient>
+                        <linearGradient id="rvRoad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#a2a7aa" /><stop offset="1" stop-color="#767c80" /></linearGradient>
+                        <linearGradient id="rvWalk" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ddd8cf" /><stop offset="1" stop-color="#c3bdb2" /></linearGradient>
+                        <linearGradient id="rvHood" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#d4d9dc" /><stop offset=".5" stop-color="#f7f8f9" /><stop offset="1" stop-color="#ccd2d5" /></linearGradient>
+                        <pattern id="rvWin" width="10" height="9" patternUnits="userSpaceOnUse"><rect x="1.5" y="1.5" width="7" height="5" fill="#fff" opacity=".18" /></pattern>
+                        <radialGradient id="rvSpot"><stop offset="0" stop-color="#c8ff00" stop-opacity=".55" /><stop offset="1" stop-color="#c8ff00" stop-opacity="0" /></radialGradient>
+                      </defs>
+                      <rect width="320" height="360" fill="url(#rvSky)" />
+                      <rect x="120" y="150" width="18" height="56" fill="#c6d1d9" /><rect x="140" y="160" width="14" height="46" fill="#b8c6d0" /><rect x="160" y="152" width="16" height="54" fill="#c2ced7" />
+                      <rect x="0" y="18" width="84" height="192" fill="url(#rvGlass)" /><rect x="0" y="18" width="84" height="192" fill="url(#rvWin)" />
+                      <rect x="86" y="96" width="34" height="114" fill="#eef0f1" />
+                      <g fill="#cdd3d8"><rect x="90" y="104" width="26" height="3" /><rect x="90" y="118" width="26" height="3" /><rect x="90" y="132" width="26" height="3" /><rect x="90" y="146" width="26" height="3" /><rect x="90" y="160" width="26" height="3" /><rect x="90" y="174" width="26" height="3" /></g>
+                      <rect x="178" y="118" width="40" height="96" fill="#e1e5e8" /><rect x="178" y="118" width="40" height="96" fill="url(#rvWin)" />
+                      <rect x="220" y="0" width="100" height="218" fill="url(#rvGlass2)" /><rect x="220" y="0" width="100" height="218" fill="url(#rvWin)" />
+                      <polygon points="0,262 128,205 139,205 20,360 0,360" fill="url(#rvWalk)" />
+                      <polygon points="20,360 139,205 163,205 232,360" fill="url(#rvRoad)" />
+                      <polygon points="232,360 163,205 178,205 320,236 320,360" fill="url(#rvWalk)" />
+                      <path d="M163 205 L232 360 M139 205 L20 360" stroke="#8f8a82" stroke-width="2.5" />
+                      <g stroke="#b3ada3" stroke-width="1" opacity=".7"><path d="M200 230 L320 252" /><path d="M214 254 L320 276" /><path d="M226 282 L320 302" /><path d="M240 314 L320 330" /><path d="M188 214 L246 360" /><path d="M214 216 L284 360" /><path d="M246 222 L318 356" /></g>
+                      <g fill="#fff" opacity=".85"><polygon points="149,212 152,212 152,220 148,220" /><polygon points="148,232 152,232 152,246 147,246" /><polygon points="146,264 152,264 152,286 145,286" /></g>
+                      <g fill="#fff" opacity=".9"><polygon points="60,318 82,318 76,336 52,336" /><polygon points="96,318 118,318 115,336 91,336" /><polygon points="132,318 154,318 154,336 130,336" /><polygon points="168,318 190,318 193,336 169,336" /></g>
+                      <rect x="300" y="150" width="3" height="100" fill="#4b5154" /><rect x="282" y="150" width="21" height="7" rx="2" fill="#2d3134" /><circle cx="287" cy="153.5" r="2" fill="#ff4a3d" /><circle cx="293" cy="153.5" r="2" fill="#555" /><circle cx="299" cy="153.5" r="2" fill="#555" />
+                      <rect x="276" y="238" width="4" height="40" fill="#6b5a46" /><circle cx="278" cy="228" r="16" fill="#5f8f55" /><circle cx="268" cy="236" r="10" fill="#6c9c60" />
+                      <path d="M-10 362 C22 332 92 322 150 330 C176 334 188 348 194 362 Z" fill="url(#rvHood)" />
+                      <path d="M40 342 C80 332 120 332 156 338" stroke="#fff" stroke-width="2.5" fill="none" opacity=".7" />
+                      <!-- the recipient's chosen spot, on the sidewalk -->
+                      <g transform="translate(236 298)">
+                        <ellipse rx="26" ry="7" fill="url(#rvSpot)" />
+                        <path d="M0 0 C-8 -10 -10 -15 -10 -19 A10 10 0 0 1 10 -19 C10 -15 8 -10 0 0 Z" fill="#c8ff00" stroke="#06110d" stroke-width="2.2" /><circle cy="-19" r="3.6" fill="#06110d" />
+                        <rect x="-50" y="-58" width="100" height="24" rx="12" fill="#06110d" stroke="#c8ff00" stroke-width="1.5" opacity=".94" />
+                        <text y="-41.5" text-anchor="middle" fill="#c8ff00" font-size="11.5" font-weight="700" font-family="Pretendard Variable, Pretendard, sans-serif">기다릴 위치 부근</text>
+                      </g>
+                    </svg>
+                    <div class="cd__rv-head"><i>지</i><div><b>지연 님이 기다리는 곳</b><span>회사 정문 앞 · 로드뷰</span></div></div>
+                    <div class="cd__rv-foot"><b id="cdRvEta">3</b>분 뒤 도착<span class="pmu__dot"></span><span id="cdRvState">기다릴 위치 · 회사 정문 앞</span></div>
                   </div>
 
                   <div class="pmu pmu--ended">
@@ -445,6 +494,6 @@
     <p class="footer__fine">지도 데이터 © <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> 기여자</p>
   </footer>
 
-  <script src="script.js?v=31"></script>
+  <script src="script.js?v=36"></script>
 </body>
 </html>
