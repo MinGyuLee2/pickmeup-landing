@@ -509,6 +509,11 @@ img { display: block; }
 .video-link:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
 .video-link span { font-size: 13px; }
 .video-link--ghost { margin-top: 26px; padding: 12px 22px; background: transparent; color: var(--lime); border: 1.5px solid rgba(200, 255, 0, .55); font-size: 15px; pointer-events: auto; }
+.video-links { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.video-links--hero { margin-top: 26px; }
+.video-links--hero .video-link--ghost { margin-top: 0; }
+.video-link--outline { background: transparent; color: var(--lime); border: 1.5px solid rgba(200, 255, 0, .55); }
+.video-link--outline:hover { background: rgba(200, 255, 0, .1); box-shadow: none; }
 .video-link--ghost:hover { background: rgba(200, 255, 0, .1); box-shadow: none; }
 .footer { background: var(--night); color: #5c6b64; border-top: 1px solid var(--line-dark); padding: 32px var(--gutter) 40px; font-size: 13px; line-height: 1.7; }
 .footer__fine { margin-top: 6px; max-width: 760px; font-size: 12px; }
